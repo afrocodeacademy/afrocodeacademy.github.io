@@ -644,18 +644,108 @@ a:focus {
 .en:before {
   background-image: url(https://www.worldometers.info/img/flags/uk-flag.gif);
 }
-/*.fr:before {*/
-/*  background-image: url(https://www.worldometers.info/img/flags/af-flag.gif);*/
-/*}*/
-
-/*.ar:before {*/
-/*  background-image: url(https://www.worldometers.info/img/flags/af-flag.gif);*/
-/*}*/
-
 
 .lang-menu:hover ul {
   display: block;
 
 }
+
+.card-name {
+  border: 1px solid grey;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+}
+
+.card-name h2 {
+  font-size: 15px;
+}
+
+.card-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px 20px;
+}
+
+.card {
+  height: 300px;
+  width: 300px;
+  margin-bottom: 50px;
+  transition: .5s;
+  margin-right: 20px;
+  margin-top: 50px;
+}
+.card:hover .card-front {
+  transform: rotateX(0deg);
+}
+.card:hover .card-back {
+  transform: rotateX(0deg);
+}
+
+.card-front .img {
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+}
+
+.card-front {
+  height: 100%;
+  width: 100%;
+  /*background-image: url(https://99px.ru/sstorage/56/2013/12/image_563012130153328414049.jpg);*/
+  background-position: 50% 50%;
+  background-size: cover;
+  position: relative;
+  top: 0;
+  left: 0;
+  background-color: #000000;
+  backface-visibility: hidden;
+  transform: rotateX(0deg);
+  transition: .5s;
+}
+.card-back {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #ffc107;
+  backface-visibility: hidden;
+  transform: rotateX(180deg);
+  transition: .5s;
+  color: #000000;
+  text-align: left;
+}
+
+.card-back h2 {
+  margin-top: 3px;
+  font-size: 20px;
+}
+
+.card-back p {
+  margin-top: 1px;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size: 13px;
+  color: #000000;
+  text-align: left;
+  font-family: 'Raleway', sans-serif;
+  padding: 5px 5px;
+}
+.card-back h2 span {
+  font-size: 20px;
+}
+.card-back a {
+  height: 20px;
+  width: 20px;
+  border-radius: 4px;
+  line-height: 20px;
+}
+.card-back a:hover {
+  color: #000000;
+  background-color: #fff;
+}
+
+
 
 /* end footer section*/
