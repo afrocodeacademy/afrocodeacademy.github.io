@@ -561,12 +561,14 @@ a:focus {
   font-weight: bold;
   position: relative;
 }
+
 .lang-menu .selected-lang {
   display: block;
   justify-content: space-between;
   line-height: 2;
   cursor: pointer;
 }
+
 .lang-menu .selected-lang:before {
   content: '';
   display: inline-block;
@@ -583,6 +585,7 @@ a:focus {
   line-height: 2;
   cursor: pointer;
 }
+
 .lang-menu .selected-lang-de:before {
   content: '';
   display: inline-block;
@@ -600,11 +603,11 @@ a:focus {
   background-color: #fff;
   border: 1px solid #f8f8f8;
   position: absolute;
-  top: 45px;
+  top: 20px;
   right: 0px;
   width: 125px;
   border-radius: 5px;
-  box-shadow: 0px 1px 10px rgba(0,0,0,0.2);
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
 }
 
 
@@ -676,9 +679,11 @@ a:focus {
   margin-right: 20px;
   margin-top: 50px;
 }
+
 .card:hover .card-front {
   transform: rotateX(0deg);
 }
+
 .card:hover .card-back {
   transform: rotateX(0deg);
 }
@@ -703,6 +708,7 @@ a:focus {
   transform: rotateX(0deg);
   transition: .5s;
 }
+
 .card-back {
   height: 100%;
   width: 100%;
@@ -732,15 +738,18 @@ a:focus {
   font-family: 'Raleway', sans-serif;
   padding: 5px 5px;
 }
+
 .card-back h2 span {
   font-size: 20px;
 }
+
 .card-back a {
   height: 20px;
   width: 20px;
   border-radius: 4px;
   line-height: 20px;
 }
+
 .card-back a:hover {
   color: #000000;
   background-color: #fff;
