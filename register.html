@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AfroCode Academy</title>
+    <style>
+        iframe {
+            width: 100%;
+            border: none;
+            display: block;
+            position: absolute;
+            top:0;
+            left:0;
+            min-height: 100vh;
+        }
+    </style>
+</head>
+<body>
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLScPZudH_6efZQlqfXwC1_kez4h7NKBDft66o0uTyf2y4x6rjA/viewform?embedded=true" onload="resizeIframe(this)"></iframe>
+
+<script>
+		function resizeIframe(iframe) {
+			iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+		}
+	</script>
+</body>
+</html>
