@@ -390,11 +390,11 @@ def home(lang):
                'Unser Projekt Afro Code Academy wird ausschließlich von engagierten Freiwilligen geleitet, denen es am Herzen liegt, Kindern die Fähigkeiten und das Wissen zu vermitteln, um in der digitalen Welt erfolgreich zu sein. Wir glauben, dass wir diesen Kindern durch Programmierkenntnisse helfen können, neue Möglichkeiten zu erschließen und den Weg in eine bessere Zukunft zu ebnen.',
                "Mehr über uns")
     robo = ({"soon": "Coming soon", "title": 'Robotics workshop <span class="hl">for kids</span>',
-             "text": "Build it, wire it, code it, and watch it move! In our new hands-on robotics workshop, kids assemble simple robots, connect motors and sensors, and program them to drive, light up and react to the world around them.",
+             "text": "Build it, wire it, code it, and watch your own robot come to life! In our new robotics workshop, kids build simple robots, equip them with motors and sensors, and program them to drive, light up and react to the world around them.",
              "points": [("blocks", "Build your own robot"), ("terminal", "Program motors &amp; sensors"), ("gamepad", "Team challenges &amp; races")],
              "cta": "Notify me", "cta2": "See current courses", "note": "Free, like all our courses", "alt": "Illustration of a friendly waving robot"} if en else
             {"soon": "Demnächst", "title": 'Robotik-Workshop <span class="hl">für Kinder</span>',
-             "text": "Bauen, verkabeln, programmieren – und zusehen, wie es sich bewegt! In unserem neuen Robotik-Workshop bauen Kinder einfache Roboter, schließen Motoren und Sensoren an und programmieren sie so, dass sie fahren, leuchten und auf ihre Umgebung reagieren.",
+             "text": "Bauen, verkabeln, programmieren – und zusehen, wie sich der eigene Roboter in Bewegung setzt! In unserem neuen Robotik-Workshop bauen Kinder einfache Roboter, statten sie mit Motoren und Sensoren aus und programmieren sie so, dass sie fahren, leuchten und auf ihre Umgebung reagieren.",
              "points": [("blocks", "Eigenen Roboter bauen"), ("terminal", "Motoren &amp; Sensoren programmieren"), ("gamepad", "Team-Challenges &amp; Rennen")],
              "cta": "Benachrichtige mich", "cta2": "Aktuelle Kurse ansehen", "note": "Kostenlos, wie alle unsere Kurse", "alt": "Illustration eines freundlich winkenden Roboters"})
     robo_points = "".join(f'<li>{I[ic]}<span>{t}</span></li>' for ic, t in robo["points"])
