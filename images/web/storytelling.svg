@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 400" role="img" aria-label="Kwaku Ananse the spider hanging from a baobab tree above an open storybook under the moon">
+  <style>
+    .swing { transform-box: view-box; transform-origin: 318px 132px; animation: swing 4s ease-in-out infinite; }
+    .float { animation: float 4s ease-in-out infinite; }
+    .f2 { animation-delay: 1.4s; }
+    .twinkle { transform-box: fill-box; transform-origin: center; animation: twinkle 2.4s ease-in-out infinite; }
+    .t2 { animation-delay: .8s; } .t3 { animation-delay: 1.6s; }
+    .rise { animation: rise 3s ease-out infinite; }
+    .r2 { animation-delay: 1s; } .r3 { animation-delay: 2s; }
+    .blink { transform-box: fill-box; transform-origin: center; animation: blink 5s infinite; }
+    .glow { transform-box: fill-box; transform-origin: center; animation: glow 5s ease-in-out infinite; }
+    @keyframes swing { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    @keyframes twinkle { 0%, 100% { opacity: .2; transform: scale(.6); } 50% { opacity: 1; transform: scale(1); } }
+    @keyframes rise { 0% { opacity: 0; transform: translateY(0); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(-46px); } }
+    @keyframes blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
+    @keyframes glow { 0%, 100% { opacity: .18; transform: scale(1); } 50% { opacity: .3; transform: scale(1.08); } }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+  </style>
+
+  <!-- moon -->
+  <circle class="glow" cx="196" cy="72" r="56" fill="#f4b13a"/>
+  <circle cx="196" cy="72" r="34" fill="#fbf6ee"/>
+  <circle cx="184" cy="64" r="6" fill="#efe2cc"/><circle cx="206" cy="84" r="4" fill="#efe2cc"/><circle cx="208" cy="58" r="3" fill="#efe2cc"/>
+
+  <!-- stars -->
+  <g fill="#fbf6ee">
+    <path class="twinkle" d="M120 30l3 7 7 3-7 3-3 7-3-7-7-3 7-3z"/>
+    <path class="twinkle t2" d="M270 26l2.5 5.5 5.5 2.5-5.5 2.5-2.5 5.5-2.5-5.5-5.5-2.5 5.5-2.5z"/>
+    <path class="twinkle t3" d="M150 128l2 4.5 4.5 2-4.5 2-2 4.5-2-4.5-4.5-2 4.5-2z"/>
+    <path class="twinkle t2" d="M456 30l2 4.5 4.5 2-4.5 2-2 4.5-2-4.5-4.5-2 4.5-2z"/>
+  </g>
+
+  <!-- spider web -->
+  <g fill="none" stroke="#fbf6ee" stroke-width="1.6" stroke-linecap="round" opacity=".35">
+    <path d="M0 0l110 30M0 0l90 70M0 0l50 100M0 0l6 112"/>
+    <path d="M28 8q-2 14 -6 16q4 6 -9 13q4 6 -12 5"/>
+    <path d="M58 16q-6 22 -14 30q6 12 -18 26q4 10 -24 12"/>
+    <path d="M90 25q-8 30 -22 43q6 18 -26 38q4 8 -40 12"/>
+  </g>
+
+  <!-- ground -->
+  <ellipse cx="240" cy="372" rx="236" ry="24" fill="#2a1f18"/>
+
+  <!-- baobab tree -->
+  <g>
+    <g fill="none" stroke="#6b3a2a" stroke-width="12" stroke-linecap="round">
+      <path d="M366 178q-18-26-48-44"/>
+      <path d="M380 172q-4-30 2-60"/>
+      <path d="M398 172q10-26 30-44"/>
+      <path d="M408 182q24-10 50-12"/>
+    </g>
+    <path d="M346 368c6-60-14-110 4-168 6-18 14-30 26-34h14c12 4 20 16 26 34 18 58-2 108 4 168z" fill="#7b4430"/>
+    <path d="M372 200c-4 40 4 90-2 160M396 210c4 36-2 90 4 150" fill="none" stroke="#5a3022" stroke-width="3" stroke-linecap="round"/>
+    <g fill="#1c7657">
+      <ellipse cx="316" cy="128" rx="30" ry="16"/>
+      <ellipse cx="384" cy="104" rx="32" ry="18"/>
+      <ellipse cx="432" cy="122" rx="30" ry="16"/>
+      <ellipse cx="458" cy="166" rx="24" ry="13"/>
+    </g>
+    <g fill="#26956e">
+      <ellipse cx="306" cy="122" rx="14" ry="7"/>
+      <ellipse cx="376" cy="96" rx="15" ry="8"/>
+      <ellipse cx="424" cy="116" rx="14" ry="7"/>
+    </g>
+  </g>
+
+  <!-- Kwaku Ananse on his thread -->
+  <g class="swing">
+    <path d="M318 134v92" stroke="#fbf6ee" stroke-width="1.6" opacity=".7"/>
+    <g fill="none" stroke="#d4502a" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M306 236l-16-10-8 10"/><path d="M304 244l-20-2-6 12"/><path d="M306 252l-16 8 0 12"/><path d="M308 258l-8 14 6 10"/>
+      <path d="M330 236l16-10 8 10"/><path d="M332 244l20-2 6 12"/><path d="M330 252l16 8 0 12"/><path d="M328 258l8 14-6 10"/>
+    </g>
+    <ellipse cx="318" cy="262" rx="18" ry="16" fill="#d4502a"/>
+    <path d="M308 256q10 6 20 0M309 266q9 5 18 0" fill="none" stroke="#f4b13a" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="318" cy="238" r="13" fill="#e2683f"/>
+    <g class="blink">
+      <circle cx="313" cy="236" r="4.5" fill="#fff"/><circle cx="323" cy="236" r="4.5" fill="#fff"/>
+      <circle cx="314" cy="237" r="2" fill="#17120e"/><circle cx="324" cy="237" r="2" fill="#17120e"/>
+    </g>
+    <path d="M313 243q5 4 10 0" fill="none" stroke="#17120e" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <!-- open storybook -->
+  <g>
+    <path d="M120 350l110-14 110 14v8l-110-12-110 12z" fill="#7a2e5f"/>
+    <path d="M128 300q50-10 102 6v40q-52-14-102-4z" fill="#fbf6ee"/>
+    <path d="M332 300q-50-10-102 6v40q52-14 102-4z" fill="#f4ece0"/>
+    <path d="M230 306v40" stroke="#d9cbb5" stroke-width="2"/>
+    <!-- left page: sun and text lines -->
+    <circle cx="160" cy="314" r="7" fill="#f4b13a"/>
+    <g stroke="#d9cbb5" stroke-width="2.5" stroke-linecap="round"><path d="M176 312h40M176 320h36M142 330h72"/></g>
+    <!-- right page: tortoise -->
+    <path d="M258 330q20-26 44 0z" fill="#1c7657"/>
+    <path d="M268 330q12-14 24 0" fill="none" stroke="#26956e" stroke-width="2"/>
+    <circle cx="306" cy="326" r="5" fill="#1c7657"/>
+    <path d="M262 330v5M298 330v5" stroke="#1c7657" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- magic rising from the book -->
+  <g fill="#f4b13a">
+    <circle class="rise" cx="196" cy="296" r="4"/>
+    <circle class="rise r2" cx="232" cy="290" r="3"/>
+    <circle class="rise r3" cx="266" cy="296" r="3.5"/>
+  </g>
+
+  <!-- greeting bubbles -->
+  <g class="float">
+    <path d="M40 152h108a16 16 0 0 1 16 16v14a16 16 0 0 1-16 16h-72l-18 16 3-16h-21a16 16 0 0 1-16-16v-14a16 16 0 0 1 16-16z" fill="#f4b13a"/>
+    <text x="94" y="182" text-anchor="middle" font-family="ui-rounded, 'Trebuchet MS', system-ui, sans-serif" font-size="20" font-weight="800" fill="#17120e">Akwaaba!</text>
+  </g>
+  <g class="float f2">
+    <path d="M36 236h94a16 16 0 0 1 16 16v12a16 16 0 0 1-16 16h-18l3 14-18-14h-61a16 16 0 0 1-16-16v-12a16 16 0 0 1 16-16z" fill="#fbf6ee"/>
+    <text x="83" y="265" text-anchor="middle" font-family="ui-rounded, 'Trebuchet MS', system-ui, sans-serif" font-size="20" font-weight="800" fill="#7a2e5f">Karibu!</text>
+  </g>
+</svg>

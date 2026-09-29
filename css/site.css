@@ -327,6 +327,30 @@ mark { background: linear-gradient(transparent 58%, rgba(244, 177, 58, .55) 58%)
 }
 @media (prefers-reduced-motion: reduce) { .soon-dot { animation: none; } }
 
+/* Storytelling teaser */
+.section--stories {
+  position: relative; overflow: hidden;
+  background:
+    radial-gradient(rgba(255, 255, 255, .07) 1.5px, transparent 1.6px) 0 0 / 22px 22px,
+    radial-gradient(70% 90% at 0% 100%, rgba(244, 177, 58, .18), transparent 60%),
+    linear-gradient(135deg, #14563f 0%, var(--leaf) 50%, #0f4533 100%);
+  color: #fff;
+}
+.section--stories h2 { color: #fff; }
+.section--stories .hl { color: var(--sun); }
+.section--stories .robotics-copy > p { color: #e9f3ee; }
+.section--stories .soon-pill { background: var(--sun); color: var(--ink); }
+.section--stories .soon-dot { background: var(--ink); }
+.section--stories .robo-points li { border-color: transparent; box-shadow: 0 6px 16px -10px rgba(0, 0, 0, .5); }
+.section--stories .robo-points li:nth-child(2) svg { color: var(--leaf); }
+.section--stories .robo-note { color: var(--sun); }
+.section--stories .soon-sticker { background: var(--sun); color: var(--ink); }
+.robotics--flip .robotics-art { order: -1; transform: rotate(-1.5deg); }
+.robotics--flip .soon-sticker { left: auto; right: -18px; transform: rotate(12deg); }
+@media (max-width: 860px) {
+  .robotics--flip .robotics-art { transform: none; }
+}
+
 /* Course cards */
 .courses { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
 @media (max-width: 900px) { .courses { grid-template-columns: 1fr; } }

@@ -63,6 +63,14 @@ MAIL = {
                "Hallo Afro Code Academy Team,\n\nbitte gebt mir Bescheid, sobald die Anmeldung für den Robotik-Workshop für Kinder startet.\n\n"
                "Name des Elternteils:\nAlter des Kindes:\nStadt (Hamburg / Göttingen):\n\nVielen Dank!"),
     },
+    "stories": {
+        "en": ("Storytelling day: please keep me updated",
+               "Hello Afro Code Academy team,\n\nPlease let me know when the date for the African storytelling & language day is set.\n\n"
+               "Parent or guardian's name:\nChild's age:\nCity (Hamburg / Göttingen):\nLanguages spoken at home (optional):\n\nThank you!"),
+        "de": ("Erzähltag: Bitte haltet mich auf dem Laufenden",
+               "Hallo Afro Code Academy Team,\n\nbitte gebt mir Bescheid, sobald der Termin für den afrikanischen Erzähl- und Sprachtag feststeht.\n\n"
+               "Name des Elternteils:\nAlter des Kindes:\nStadt (Hamburg / Göttingen):\nZu Hause gesprochene Sprachen (optional):\n\nVielen Dank!"),
+    },
     "adults": {
         "en": ("Course registration: Adults (18+)",
                "Hello Afro Code Academy team,\n\nI would like to register for the adult course.\n\n"
@@ -116,6 +124,8 @@ I = {
     "blocks": svg('<rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/><rect x="8" y="3" width="8" height="8" rx="1.5"/>'),
     "gamepad": svg('<path d="M6.5 7h11A4.5 4.5 0 0 1 22 11.5v1a4.5 4.5 0 0 1-8 2.8l-.3-.3h-3.4l-.3.3a4.5 4.5 0 0 1-8-2.8v-1A4.5 4.5 0 0 1 6.5 7z"/><path d="M7 10v4M5 12h4M15.5 11h.01M18 13h.01"/>'),
     "terminal": svg('<rect x="3" y="4" width="18" height="16" rx="3"/><path d="M7 9l3 3-3 3M12.5 15H17"/>'),
+    "book": svg('<path d="M2 5h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2zM22 5h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7z"/>'),
+    "image": svg('<rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 9"/>'),
     "chart": svg('<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M7 12l3-3 2 2 4-4M8 20h8M12 16v4"/>'),
     "zoom": svg('<circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5M11 8v6M8 11h6"/>'),
     "menu": svg('<path d="M4 7h16M4 12h16M4 17h16"/>'),
@@ -398,6 +408,17 @@ def home(lang):
              "points": [("blocks", "Eigenen Roboter bauen"), ("terminal", "Motoren &amp; Sensoren programmieren"), ("gamepad", "Team-Challenges &amp; Rennen")],
              "cta": "Benachrichtige mich", "cta2": "Aktuelle Kurse ansehen", "note": "Kostenlos, wie alle unsere Kurse", "alt": "Illustration eines freundlich winkenden Roboters"})
     robo_points = "".join(f'<li>{I[ic]}<span>{t}</span></li>' for ic, t in robo["points"])
+    story = ({"title": 'African storytelling <span class="hl">&amp; language day</span>',
+              "text": "Gather round! On our African storytelling day, kids hear folktales that have been passed down for generations: clever Kwaku Ananse the spider, the cunning tortoise and many more. Told in African languages like Twi, Yoruba, Swahili and Hausa, with translations and colourful illustrations so everyone can follow along.",
+              "points": [("book", "Folktales like Kwaku Ananse"), ("lang", "Told in African languages"), ("image", "Colourful illustrations")],
+              "cta2": "Become a storyteller", "note": "Free for all kids",
+              "alt": "Illustration of Kwaku Ananse the spider hanging from a baobab tree above an open storybook"} if en else
+             {"title": 'Afrikanischer Erzähl- <span class="hl">&amp; Sprachtag</span>',
+              "text": "Kommt zusammen! An unserem afrikanischen Erzähltag hören Kinder Geschichten, die seit Generationen weitererzählt werden: vom schlauen Spinnenmann Kwaku Ananse, der listigen Schildkröte und vielen mehr. Erzählt in afrikanischen Sprachen wie Twi, Yoruba, Swahili und Hausa – mit Übersetzung und farbenfrohen Illustrationen, damit alle mitkommen.",
+              "points": [("book", "Geschichten wie Kwaku Ananse"), ("lang", "In afrikanischen Sprachen erzählt"), ("image", "Farbenfrohe Illustrationen")],
+              "cta2": "Als Erzähler mitmachen", "note": "Kostenlos für alle Kinder",
+              "alt": "Illustration des Spinnenmanns Kwaku Ananse, der von einem Affenbrotbaum über einem aufgeschlagenen Märchenbuch hängt"})
+    story_points = "".join(f'<li>{I[ic]}<span>{t}</span></li>' for ic, t in story["points"])
     hl = ([("gift", "Free, always", "No fees, and no plans to change that."),
            ("calendar", "A month of Saturdays", "Each course runs every Saturday for one month."),
            ("laptop", "All levels welcome", "From first steps to experienced young coders.")] if en else
@@ -458,6 +479,28 @@ def home(lang):
       </div>
       <div class="robotics-art">
         <img src="images/web/robot.svg" alt="{robo["alt"]}" width="480" height="400" loading="lazy">
+        <div class="soon-sticker" aria-hidden="true"><span>{robo["soon"]}</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--stories" id="storytelling">
+  <div class="container">
+    <div class="robotics robotics--flip reveal">
+      <div class="robotics-copy">
+        <span class="soon-pill"><span class="soon-dot" aria-hidden="true"></span>{robo["soon"]}</span>
+        <h2>{story["title"]}</h2>
+        <p>{story["text"]}</p>
+        <ul class="robo-points">{story_points}</ul>
+        <div class="btn-row">
+          <a class="btn btn--primary" {mail_attrs("stories", lang, "#storytelling")}>{I["mail"]} {robo["cta"]}</a>
+          <a class="btn btn--outline-light" href="{url("volunteer", lang)}">{story["cta2"]} {I["arrow"]}</a>
+        </div>
+        <p class="robo-note">{I["gift"]} {story["note"]}</p>
+      </div>
+      <div class="robotics-art">
+        <img src="images/web/storytelling.svg" alt="{story["alt"]}" width="480" height="400" loading="lazy">
         <div class="soon-sticker" aria-hidden="true"><span>{robo["soon"]}</span></div>
       </div>
     </div>
