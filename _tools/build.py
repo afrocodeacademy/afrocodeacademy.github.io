@@ -55,6 +55,14 @@ MAIL = {
                "Hallo Afro Code Academy Team,\n\nich möchte mein Kind für einen Programmierkurs anmelden.\n\n"
                "Name des Kindes:\nAlter:\nBevorzugte Sprache (Deutsch / Englisch):\nName des Elternteils:\nTelefonnummer:\n\nVielen Dank!"),
     },
+    "robotics": {
+        "en": ("Robotics workshop: please keep me updated",
+               "Hello Afro Code Academy team,\n\nPlease let me know when registration for the robotics workshop for kids opens.\n\n"
+               "Parent or guardian's name:\nChild's age:\nCity (Hamburg / Göttingen):\n\nThank you!"),
+        "de": ("Robotik-Workshop: Bitte haltet mich auf dem Laufenden",
+               "Hallo Afro Code Academy Team,\n\nbitte gebt mir Bescheid, sobald die Anmeldung für den Robotik-Workshop für Kinder startet.\n\n"
+               "Name des Elternteils:\nAlter des Kindes:\nStadt (Hamburg / Göttingen):\n\nVielen Dank!"),
+    },
     "adults": {
         "en": ("Course registration: Adults (18+)",
                "Hello Afro Code Academy team,\n\nI would like to register for the adult course.\n\n"
@@ -65,10 +73,10 @@ MAIL = {
     },
 }
 
-def mail_attrs(kind, lang):
+def mail_attrs(kind, lang, fallback="#register"):
     subject, body = MAIL[kind][lang]
     esc = lambda t: html.escape(t, quote=True).replace("\n", "&#10;")
-    return f'href="#register" data-mail="{EMAIL}" data-subject="{esc(subject)}" data-body="{esc(body)}"'
+    return f'href="{fallback}" data-mail="{EMAIL}" data-subject="{esc(subject)}" data-body="{esc(body)}"'
 
 def dims(name):
     with Image.open(os.path.join(WEB, name)) as im:
@@ -315,10 +323,22 @@ COURSES = {
 }
 
 COURSE_ICONS = ["blocks", "gamepad", "terminal", "chart"]
+COURSE_SHORT = {
+    "en": ["Logic and sequence through games, robots, apps and simple coding challenges.",
+           "Conditionals, loops, variables and functions, learned by building games and animations.",
+           "Real tools and platforms: Python, Arduino, Raspberry Pi, game making and web development.",
+           "Two online beginner tracks: build your own website, or analyse data with Python."],
+    "de": ["Logik und Abläufe mit Spielen, Robotern, Apps und einfachen Programmieraufgaben.",
+           "Bedingungen, Schleifen, Variablen und Funktionen – beim Bauen von Spielen und Animationen.",
+           "Echte Werkzeuge: Python, Arduino, Raspberry Pi, Spieleentwicklung und Webentwicklung.",
+           "Zwei Online-Einsteiger-Tracks: eigene Website bauen oder Daten mit Python analysieren."],
+}
 
-def course_cards(lang):
+def course_cards(lang, short=False):
     out = []
-    for (age, label, title, text, tags), ic in zip(COURSES[lang], COURSE_ICONS):
+    for i, ((age, label, title, text, tags), ic) in enumerate(zip(COURSES[lang], COURSE_ICONS)):
+        if short:
+            text, tags = COURSE_SHORT[lang][i], tags[:4]
         t = "".join(f"<span>{x}</span>" for x in tags)
         out.append(f'''<article class="course reveal"><div class="course-icon">{I[ic]}</div><div>
 <div class="course-top"><span class="course-age">{age}</span><span class="course-label">{label}</span></div>
@@ -349,7 +369,7 @@ def home(lang):
              if en else
              [("100 %", "Immer kostenlos"), ("Sa", "Kurse jeden Samstag"), ("4–18+", "Altersgruppen"), ("DE · EN", "Unterrichtssprachen")])
     facts_html = "".join(f'<div class="fact"><b>{a}</b><span>{b}</span></div>' for a, b in facts)
-    mosaic = "".join(gallery_link(n, lang, figure=False) for n in ["23", "3", "13", "22", "1", "11", "0340", "7"])
+    mosaic = "".join(gallery_link(n, lang, figure=False) for n in ["23", "3", "13", "22", "1"])
     T = {
         "eyebrow": "Free coding classes for kids, teens &amp; adults" if en else "Kostenlose Programmierkurse für Kinder, Jugendliche &amp; Erwachsene",
         "h1": 'Coding skills for a <span class="hl">brighter future</span>.' if en else 'Programmieren für eine <span class="hl">bessere Zukunft</span>.',
@@ -369,18 +389,22 @@ def home(lang):
                "Über unser Projekt", "Ausschließlich von engagierten Freiwilligen getragen",
                'Unser Projekt Afro Code Academy wird ausschließlich von engagierten Freiwilligen geleitet, denen es am Herzen liegt, Kindern die Fähigkeiten und das Wissen zu vermitteln, um in der digitalen Welt erfolgreich zu sein. Wir glauben, dass wir diesen Kindern durch Programmierkenntnisse helfen können, neue Möglichkeiten zu erschließen und den Weg in eine bessere Zukunft zu ebnen.',
                "Mehr über uns")
-    free_t = ("Free to learn", 'Our courses take place every <mark><strong>Saturday</strong></mark> for a duration of <mark><strong>one month</strong></mark>. We are committed to making our coding classes and workshops accessible to all children, regardless of their financial circumstances.',
-              'Our courses are completely <strong>free</strong> to attend, and we have no plans to change this in the foreseeable future. We believe every child should have the opportunity to learn valuable skills and build a brighter future, and we are dedicated to removing the financial barriers that might keep them from our program.',
-              "See the curriculum") if en else (
-              "Kostenlos lernen", 'Unsere Kurse finden jeden <mark><strong>Samstag</strong></mark> für eine Dauer von <mark><strong>einem Monat</strong></mark> statt. Wir sind bestrebt, unsere Programmierkurse und Workshops allen Kindern zugänglich zu machen, unabhängig von ihren finanziellen Möglichkeiten.',
-              'Die Teilnahme an unseren Kursen ist völlig <strong>kostenlos</strong>, und wir haben nicht vor, dies in absehbarer Zukunft zu ändern. Jedes Kind sollte die Möglichkeit haben, wertvolle Fähigkeiten zu erlernen und sich eine bessere Zukunft aufzubauen – deshalb beseitigen wir finanzielle Hindernisse.',
-              "Zum Lehrplan")
-    why_t = ("Why join Afro Code Academy?",
-             'In addition to being free, our courses are designed to be flexible and accommodate learners of all levels. Whether a child is just starting to learn about coding or is already an experienced programmer, we have classes and workshops that will suit their needs and help them achieve their goals.',
-             "Language of instruction: German and English", "Meet the volunteers") if en else (
-             "Warum bei der Afro Code Academy?",
-             'Unsere Kurse sind nicht nur kostenlos, sondern auch so konzipiert, dass sie flexibel sind und sich an Lernende aller Niveaus richten. Egal, ob ein Kind gerade erst mit dem Programmieren anfängt oder bereits Erfahrung hat – wir haben Kurse und Workshops, die seinen Bedürfnissen entsprechen und ihm helfen, seine Ziele zu erreichen.',
-             "Unterrichtssprache: Deutsch und Englisch", "Das Team kennenlernen")
+    robo = ({"soon": "Coming soon", "title": 'Robotics workshop <span class="hl">for kids</span>',
+             "text": "Build it, wire it, code it, and watch it move! In our new hands-on robotics workshop, kids assemble simple robots, connect motors and sensors, and program them to drive, light up and react to the world around them.",
+             "points": [("blocks", "Build your own robot"), ("terminal", "Program motors &amp; sensors"), ("gamepad", "Team challenges &amp; races")],
+             "cta": "Notify me", "cta2": "See current courses", "note": "Free, like all our courses", "alt": "Illustration of a friendly waving robot"} if en else
+            {"soon": "Demnächst", "title": 'Robotik-Workshop <span class="hl">für Kinder</span>',
+             "text": "Bauen, verkabeln, programmieren – und zusehen, wie es sich bewegt! In unserem neuen Robotik-Workshop bauen Kinder einfache Roboter, schließen Motoren und Sensoren an und programmieren sie so, dass sie fahren, leuchten und auf ihre Umgebung reagieren.",
+             "points": [("blocks", "Eigenen Roboter bauen"), ("terminal", "Motoren &amp; Sensoren programmieren"), ("gamepad", "Team-Challenges &amp; Rennen")],
+             "cta": "Benachrichtige mich", "cta2": "Aktuelle Kurse ansehen", "note": "Kostenlos, wie alle unsere Kurse", "alt": "Illustration eines freundlich winkenden Roboters"})
+    robo_points = "".join(f'<li>{I[ic]}<span>{t}</span></li>' for ic, t in robo["points"])
+    hl = ([("gift", "Free, always", "No fees, and no plans to change that."),
+           ("calendar", "A month of Saturdays", "Each course runs every Saturday for one month."),
+           ("laptop", "All levels welcome", "From first steps to experienced young coders.")] if en else
+          [("gift", "Immer kostenlos", "Keine Gebühren – und das bleibt so."),
+           ("calendar", "Einen Monat lang samstags", "Jeder Kurs läuft einen Monat lang jeden Samstag."),
+           ("laptop", "Alle Niveaus willkommen", "Von den ersten Schritten bis zu erfahrenen jungen Programmierern.")])
+    highlights = "".join(f'<li><span class="hl-icon">{I[ic]}</span><span><strong>{a}</strong>{b}</span></li>' for ic, a, b in hl)
     courses_h = ("What courses do we offer?", "We have courses for different age groups, and these groups are subdivided into smaller groups.", "Full curriculum") if en else (
                  "Welche Kurse bieten wir an?", "Wir haben Kurse für verschiedene Altersgruppen, welche jeweils in weitere Untergruppen unterteilt werden.", "Zum Lehrplan")
     gal_h = ("Workshop gallery", "Moments from our classrooms", "View all photos") if en else ("Workshop-Galerie", "Momente aus unseren Kursen", "Alle Fotos ansehen")
@@ -418,6 +442,28 @@ def home(lang):
   <div class="container facts-grid">{facts_html}</div>
 </section>
 
+<section class="section section--robotics" id="robotics">
+  <div class="container">
+    <div class="robotics reveal">
+      <div class="robotics-copy">
+        <span class="soon-pill"><span class="soon-dot" aria-hidden="true"></span>{robo["soon"]}</span>
+        <h2>{robo["title"]}</h2>
+        <p>{robo["text"]}</p>
+        <ul class="robo-points">{robo_points}</ul>
+        <div class="btn-row">
+          <a class="btn btn--primary" {mail_attrs("robotics", lang, "#robotics")}>{I["mail"]} {robo["cta"]}</a>
+          <a class="btn btn--ghost" href="{url("curriculum", lang)}">{robo["cta2"]} {I["arrow"]}</a>
+        </div>
+        <p class="robo-note">{I["gift"]} {robo["note"]}</p>
+      </div>
+      <div class="robotics-art">
+        <img src="images/web/robot.svg" alt="{robo["alt"]}" width="480" height="400" loading="lazy">
+        <div class="soon-sticker" aria-hidden="true"><span>{robo["soon"]}</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section">
   <div class="container">
     <div class="split reveal">
@@ -426,37 +472,8 @@ def home(lang):
         <span class="eyebrow">{about_t[0]}</span>
         <h2>{about_t[1]}</h2>
         <p>{about_t[2]}</p>
+        <ul class="highlights">{highlights}</ul>
         <div class="btn-row"><a class="btn btn--ghost" href="{url("about", lang)}">{about_t[3]} {I["arrow"]}</a></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section section--warm">
-  <div class="container">
-    <div class="split split--rev reveal">
-      <div class="split-media photo-pair">{pic(photo("16"), alt("16", lang))}{pic(photo("0335"), alt("0335", lang))}</div>
-      <div>
-        <span class="eyebrow">{"Accessible to all" if en else "Für alle zugänglich"}</span>
-        <h2>{free_t[0]}</h2>
-        <p>{free_t[1]}</p>
-        <p>{free_t[2]}</p>
-        <div class="btn-row"><a class="btn btn--ghost" href="{url("curriculum", lang)}">{free_t[3]} {I["arrow"]}</a></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section section--green">
-  <div class="container">
-    <div class="split reveal">
-      <figure class="split-media photo photo--clay photo--left">{pic(photo("22"), alt("22", lang))}</figure>
-      <div>
-        <span class="eyebrow">{"All levels welcome" if en else "Alle Niveaus willkommen"}</span>
-        <h2>{why_t[0]}</h2>
-        <p>{why_t[1]}</p>
-        <p class="callout">{I["lang"]}<span>{why_t[2]}</span></p>
-        <div class="btn-row"><a class="btn btn--ghost" href="{url("volunteer", lang)}">{why_t[3]} {I["arrow"]}</a></div>
       </div>
     </div>
   </div>
@@ -469,7 +486,7 @@ def home(lang):
       <h2>{courses_h[0]}</h2>
       <p class="lead">{courses_h[1]}</p>
     </div>
-    {course_cards(lang)}
+    {course_cards(lang, short=True)}
     <div class="btn-row" style="justify-content:center"><a class="btn btn--primary" href="{url("curriculum", lang)}">{courses_h[2]} {I["arrow"]}</a></div>
   </div>
 </section>
