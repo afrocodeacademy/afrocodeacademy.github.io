@@ -35,7 +35,7 @@ body {
   background: var(--paper);
   -webkit-font-smoothing: antialiased;
 }
-img { max-width: 100%; display: block; }
+img { max-width: 100%; height: auto; display: block; }
 a { color: var(--clay-d); text-underline-offset: 3px; }
 a:hover { color: var(--clay); }
 h1, h2, h3, h4 { font-family: var(--font-d); color: var(--ink); line-height: 1.1; margin: 0 0 .5em; letter-spacing: -0.02em; }
@@ -224,8 +224,7 @@ mark { background: linear-gradient(transparent 58%, rgba(244, 177, 58, .55) 58%)
 .split--rev .split-media { order: 2; }
 @media (max-width: 860px) {
   .split { grid-template-columns: 1fr; }
-  .photo::before { inset: 14px -8px -10px 14px; }
-  .photo--left::before { inset: 14px 14px -10px -8px; }
+  .photo::before, .photo--left::before { inset: 16px 10px -10px 10px; }
   .split--rev .split-media { order: 0; }
 }
 .photo { position: relative; margin: 0; }
@@ -462,7 +461,7 @@ a.contact-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); b
 .site-footer { background: var(--ink); color: #cfc4b7; padding-bottom: env(safe-area-inset-bottom, 0px); }
 .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; padding-block: 64px 40px; }
 @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 520px) { .footer-grid { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .footer-grid { grid-template-columns: 1fr 1fr; } .footer-grid > :first-child, .footer-grid > :last-child { grid-column: 1 / -1; } }
 .site-footer .brand { color: #fff; }
 .site-footer .brand-text small { color: #a89c8f; }
 .footer-about { margin-top: 18px; font-size: .95rem; max-width: 340px; }
@@ -484,3 +483,82 @@ a.contact-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); b
   .js .reveal { opacity: 1; transform: none; transition: none; }
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+
+/* ---------- Phone refinements ---------- */
+@media (max-width: 860px) {
+  .split + .split { margin-top: 64px; }
+  .photo-pair img { aspect-ratio: 4 / 5; }
+  .photo-pair img:nth-child(2) { margin-top: 28px; }
+}
+@media (max-width: 600px) {
+  body { font-size: 1rem; }
+  .section { padding-block: 56px; }
+  .section--tight { padding-block: 40px; }
+  .section-head { margin-bottom: 28px; }
+  h2 { font-size: clamp(1.75rem, 7.5vw, 2.1rem); }
+  .lead { font-size: 1.05rem; }
+  .eyebrow { font-size: .72rem; letter-spacing: .1em; }
+
+  /* Buttons stack full-width */
+  .btn-row .btn, .downloads .btn { width: 100%; }
+  .btn-row { margin-top: 22px; }
+
+  /* Hero */
+  .hero { padding-block: 28px 48px; }
+  .hero h1 { font-size: clamp(2.2rem, 10vw, 2.8rem); margin-bottom: 16px; }
+  .hero-note { margin-top: 20px; font-size: .92rem; }
+  .collage { margin-top: 8px; }
+  .collage figure { border-width: 4px; border-radius: 16px; }
+  .badge-free { width: 84px; font-size: .85rem; }
+  .badge-place { gap: 8px; padding: 9px 12px 9px 10px; font-size: .9rem; border-radius: 14px; }
+  .badge-place svg { width: 26px; height: 26px; padding: 5px; }
+  .badge-place small { font-size: .6rem; }
+
+  /* Facts */
+  .fact { padding: 20px 14px; }
+  .fact b { font-size: 1.6rem; }
+  .fact span { font-size: .85rem; }
+
+  /* Photos */
+  .photo img { border-radius: 16px; }
+  .photo-pair { gap: 10px; }
+  .photo-pair img { border-radius: 16px; aspect-ratio: 1 / 1; }
+  .photo-pair img:nth-child(2) { margin-top: 0; }
+
+  /* Page heroes */
+  .page-hero .container { padding-block: 72px 32px; }
+  .page-hero h1 { font-size: clamp(2.1rem, 9.5vw, 2.6rem); }
+
+  /* Cards */
+  .course { padding: 22px 20px; }
+  .course h3 { font-size: 1.2rem; }
+  .member { padding: 20px; }
+  .member-head img { width: 68px; height: 68px; }
+  .role { padding: 18px; }
+  .age-item { padding: 18px; }
+  .track { padding: 22px; }
+  .partner { padding: 18px; }
+  .partner-logo { aspect-ratio: auto; padding: 20px; }
+  .partner-logo img { max-height: 70px; }
+  .contact-card { padding: 16px 18px; gap: 14px; }
+  .contact-card .ic { width: 46px; height: 46px; border-radius: 14px; }
+  .contact-card strong { font-size: 1rem; }
+  .logo-strip { gap: 28px; }
+  .logo-strip img { height: 40px; }
+  .quote { font-size: 1.5rem; margin-block: 40px; }
+
+  /* Gallery: two columns */
+  .masonry { columns: 2; column-gap: 10px; }
+  .masonry a { margin-bottom: 10px; border-radius: 10px; }
+  .masonry .cap { display: none; }
+  .mosaic { gap: 10px; }
+
+  /* Bands */
+  .band .container { padding-block: 64px; }
+  .band::before { background: linear-gradient(180deg, rgba(23, 18, 14, .55) 0%, rgba(23, 18, 14, .9) 100%); }
+  .band p { font-size: 1rem; }
+
+  /* Footer */
+  .footer-grid { gap: 28px; padding-block: 44px 28px; }
+}
+
